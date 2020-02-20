@@ -63,9 +63,13 @@ class TimerViewController: UIViewController {
         timeInterval = timeInterval + second
     }
     @IBAction func setTimerButtonPressed() {
-        guard timeInterval > 0 else { showAlert(title: "No time set", message: "Please select a time to create a timer"); return }
-        checkForNotificationAuthorization()
         getTotalSecondsForTimer()
+        guard timeInterval > 0 else {
+            showAlert(title: "No time set", message: "Please select a time to create a timer")
+            return
+        }
+        checkForNotificationAuthorization()
+        
         resetPickerView()
         timeInterval = 0
     }

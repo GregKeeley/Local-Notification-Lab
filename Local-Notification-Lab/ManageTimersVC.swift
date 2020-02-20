@@ -68,7 +68,6 @@ extension ManageTimersVC: UITableViewDataSource {
         }
     }
     private func removeNotification(atIndexPath indexPath: IndexPath) {
-        let notification = notifications[indexPath.row]
         notifications.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
