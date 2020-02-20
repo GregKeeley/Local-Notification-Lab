@@ -13,17 +13,17 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var titleTextField: UITextField!
     
-    private var timeInterval: TimeInterval = Date().timeIntervalSinceNow 
+    private var timeInterval: TimeInterval = Date().timeIntervalSinceNow
     
     private var hour: Double = 0
     private var minute: Double = 0
     private var second: Double = 0
     
-    @IBOutlet weak var setTimerButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerView.delegate = self
         pickerView.dataSource = self
+        timeInterval = 0
     }
     private func createLocalNotification() {
         let content = UNMutableNotificationContent()
@@ -41,6 +41,14 @@ class TimerViewController: UIViewController {
             }
         }
     }
+    private func resetPickerView() {
+        pickerView.selectRow(0, inComponent: 0, animated: true)
+        hour = 0
+        pickerView.selectRow(0, inComponent: 1, animated: true)
+        minute = 0
+        pickerView.selectRow(0, inComponent: 2, animated: true)
+        second = 0
+    }
     private func getTotalSecondsForTimer() {
         timeInterval = timeInterval + (hour * 60) * 60
         timeInterval = timeInterval + (minute * 60)
@@ -48,7 +56,10 @@ class TimerViewController: UIViewController {
     }
     @IBAction func setTimerButtonPressed() {
         getTotalSecondsForTimer()
-        print(timeInterval.description)
+        resetPickerView()
+        print(timeInterval)
+        timeInterval = 0
+        print(timeInterval)
     }
 }
 extension TimerViewController: UIPickerViewDelegate {
