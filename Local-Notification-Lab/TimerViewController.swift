@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class TimerViewController: UIViewController {
     
     @IBOutlet weak var pickerView: UIPickerView!
@@ -15,20 +17,25 @@ class TimerViewController: UIViewController {
     
     private var timeInterval: TimeInterval = Date().timeIntervalSinceNow
     
+    private let center = UNUserNotificationCenter.current()
+    private let pendingNotification = PendingNotification()
+    
     private var hour: Double = 0
     private var minute: Double = 0
     private var second: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        center.delegate = self
         pickerView.delegate = self
         pickerView.dataSource = self
         timeInterval = 0
     }
+    
     private func createLocalNotification() {
         let content = UNMutableNotificationContent()
-        content.title = titleTextField.text ?? "No title"
-        content.subtitle = "Timer"
+        content.title = timeInterval.description
+        content.subtitle = titleTextField.text ?? "No title"
         content.sound = .default
         let identifier = UUID().uuidString
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
@@ -42,6 +49,7 @@ class TimerViewController: UIViewController {
         }
     }
     private func resetPickerView() {
+        createLocalNotification()
         pickerView.selectRow(0, inComponent: 0, animated: true)
         hour = 0
         pickerView.selectRow(0, inComponent: 1, animated: true)
@@ -55,11 +63,43 @@ class TimerViewController: UIViewController {
         timeInterval = timeInterval + second
     }
     @IBAction func setTimerButtonPressed() {
+        checkForNotificationAuthorization()
         getTotalSecondsForTimer()
         resetPickerView()
-        print(timeInterval)
         timeInterval = 0
-        print(timeInterval)
+    }
+    private func checkForNotificationAuthorization() {
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                print("App is authorized for notifications")
+            } else {
+                self.requestNotificationPermissions()
+            }
+        }
+    }
+    private func requestNotificationPermissions() {
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if let error = error {
+                print("error requesting authorization: \(error)")
+                return
+            }
+            if granted {
+                print("Access was granted")
+            } else {
+                print("Access denied")
+            }
+        }
+    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let navController = segue.destination as? UINavigationController,
+//            let manageTimerVC = navController.viewControllers.first as? ManageTimersVC else {
+//                fatalError("Could not downcast to ManageTimersVC")
+//        }
+//    }
+}
+extension TimerViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
     }
 }
 extension TimerViewController: UIPickerViewDelegate {

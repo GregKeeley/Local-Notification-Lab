@@ -14,7 +14,7 @@
 		C1ABAE6C23FF0BBC00912A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1ABAE6B23FF0BBC00912A2C /* Assets.xcassets */; };
 		C1ABAE6F23FF0BBC00912A2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1ABAE6D23FF0BBC00912A2C /* LaunchScreen.storyboard */; };
 		C1ABAE7723FF16FD00912A2C /* PendingNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABAE7623FF16FD00912A2C /* PendingNotification.swift */; };
-		C1ABAE7923FF17C800912A2C /* ManagaTimersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABAE7823FF17C800912A2C /* ManagaTimersVC.swift */; };
+		C1ABAE7923FF17C800912A2C /* ManageTimersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABAE7823FF17C800912A2C /* ManageTimersVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		C1ABAE6E23FF0BBC00912A2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1ABAE7023FF0BBC00912A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1ABAE7623FF16FD00912A2C /* PendingNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingNotification.swift; sourceTree = "<group>"; };
-		C1ABAE7823FF17C800912A2C /* ManagaTimersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagaTimersVC.swift; sourceTree = "<group>"; };
+		C1ABAE7823FF17C800912A2C /* ManageTimersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTimersVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,7 @@
 				C1ABAE6223FF0BB800912A2C /* AppDelegate.swift */,
 				C1ABAE6423FF0BB800912A2C /* SceneDelegate.swift */,
 				C1ABAE6623FF0BB800912A2C /* TimerViewController.swift */,
-				C1ABAE7823FF17C800912A2C /* ManagaTimersVC.swift */,
+				C1ABAE7823FF17C800912A2C /* ManageTimersVC.swift */,
 				C1ABAE6823FF0BB800912A2C /* Main.storyboard */,
 				C1ABAE7623FF16FD00912A2C /* PendingNotification.swift */,
 				C1ABAE6B23FF0BBC00912A2C /* Assets.xcassets */,
@@ -148,7 +148,7 @@
 				C1ABAE6723FF0BB800912A2C /* TimerViewController.swift in Sources */,
 				C1ABAE6323FF0BB800912A2C /* AppDelegate.swift in Sources */,
 				C1ABAE6523FF0BB800912A2C /* SceneDelegate.swift in Sources */,
-				C1ABAE7923FF17C800912A2C /* ManagaTimersVC.swift in Sources */,
+				C1ABAE7923FF17C800912A2C /* ManageTimersVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
