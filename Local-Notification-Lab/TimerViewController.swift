@@ -58,11 +58,12 @@ class TimerViewController: UIViewController {
         second = 0
     }
     private func getTotalSecondsForTimer() {
-        timeInterval = timeInterval + (hour * 60) * 60
+        timeInterval = (hour * 60) * 60
         timeInterval = timeInterval + (minute * 60)
         timeInterval = timeInterval + second
     }
     @IBAction func setTimerButtonPressed() {
+        guard timeInterval > 0 else { showAlert(title: "No time set", message: "Please select a time to create a timer"); return }
         checkForNotificationAuthorization()
         getTotalSecondsForTimer()
         resetPickerView()
@@ -90,12 +91,7 @@ class TimerViewController: UIViewController {
             }
         }
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let navController = segue.destination as? UINavigationController,
-//            let manageTimerVC = navController.viewControllers.first as? ManageTimersVC else {
-//                fatalError("Could not downcast to ManageTimersVC")
-//        }
-//    }
+
 }
 extension TimerViewController: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -146,5 +142,14 @@ extension TimerViewController: UIPickerViewDataSource {
         default:
             return
         }
+    }
+}
+
+extension UIViewController {
+    func showAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: completion)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

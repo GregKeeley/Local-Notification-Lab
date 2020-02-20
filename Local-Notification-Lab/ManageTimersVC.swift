@@ -62,7 +62,16 @@ extension ManageTimersVC: UITableViewDataSource {
         cell.detailTextLabel?.text = notification.content.subtitle
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            removeNotification(atIndexPath: indexPath)
+        }
+    }
+    private func removeNotification(atIndexPath indexPath: IndexPath) {
+        let notification = notifications[indexPath.row]
+        notifications.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
     
 }
 extension ManageTimersVC: UITableViewDelegate {
